@@ -6,7 +6,7 @@ class File extends Abstraction {
     public function write($level, $message, $to_path) {
         $message = json_encode($message, JSON_UNESCAPED_UNICODE);
         $log_path = $this->getPath($level, $to_path);
-        $file_path = '/data1/logs/' . APP_NAME . '/' . $log_path;
+        $file_path = '/data1/logs/' . $log_path;
         $dir_path  = dirname($file_path);
         if (!is_dir($dir_path)) {
             mkdir($dir_path, 0777, true);

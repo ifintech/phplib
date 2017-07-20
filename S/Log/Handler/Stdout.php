@@ -8,7 +8,7 @@ class Stdout extends Abstraction {
         $message['log_path'] = $log_path;
         $message = json_encode($message, JSON_UNESCAPED_UNICODE);
 
-        file_put_contents("/dev/stdout", $message, LOCK_EX);
+        file_put_contents("php://stdout", $message);
 
         return true;
     }

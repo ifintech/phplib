@@ -78,7 +78,7 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
      */
     public function _initBaseLog() {
         if (\Core\Env::isProductEnv()) {
-            \S\Log\Logger::getInstance()->pushHandler(new \S\Log\Handler\Rsyslog());
+            \S\Log\Logger::getInstance()->pushHandler(new \S\Log\Handler\Stdout());
         } else {
             \S\Log\Logger::getInstance()->pushHandler(new \S\Log\Handler\File());
         }
