@@ -69,17 +69,16 @@ class Config {
 
     private static function confType($key, $type, $env = false) {
         $file_path = APP_CONF . "/" . $type;
-        if ($env) {
-            $file_path .= "/" . \Core\Env::getEnvName();
-        }
-
         $names = explode(".", $key);
-
-        $file = "";
-        while (!file_exists($file) && $names) {
-            $file_name = array_shift($names);
-            $file_path = $file_path . "/" . $file_name;
-            $file      = $file_path . ".php";
+        if ($env) {
+            $file = $file_path . "/" . \Core\Env::getEnvName() . ".php";
+        } else {
+            $file = "";
+            while (!file_exists($file) && $names) {
+                $file_name = array_shift($names);
+                $file_path = $file_path . "/" . $file_name;
+                $file      = $file_path . ".php";
+            }
         }
 
         $config = self::file($file);
