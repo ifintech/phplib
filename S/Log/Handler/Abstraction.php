@@ -31,7 +31,7 @@ abstract class Abstraction {
                 $key = trim(\S\Request::server('PATH_INFO'), '/');
             }
         }
-        $key .= APP_NAME . "/" . date("Ym") . "/" . $level . "." . date("Ymd") . ".log";
+        $key = APP_NAME . "/" . $key . "/" . date("Ym") . "/" . $level . "." . date("Ymd") . ".log";
 
         return strtolower($key);
     }
