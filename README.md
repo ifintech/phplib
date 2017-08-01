@@ -72,6 +72,13 @@ docker exec -it demo /data1/htdocs/demo/build/build.sh
 curl -v http://127.0.0.1/ -H 'Host:demo.com'
 ```
 
+4. 本地开发,在/etc/hosts中添加如下行:
+```shell
+   127.0.0.1	demo.com
+```
+
+5. 通过demo.com:port进行访问（需要注意，如果映射端口不是80，需要修改nginx中的listen配置）
+
 ## 模式
 
 * web请求
