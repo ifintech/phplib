@@ -10,74 +10,19 @@ web框架（如yaf）解决了请求流转和分发的问题，将请求生命�
 
 ## 环境依赖
 
-1. PHP7.1+
-
-1. yaf/yac/redis/phpunit 稳定版
-
-1. 编译安装 
+1. PHP7.1+  
+   编译安装 
 
    ```shell
    ./configure --prefix=/usr/local/php --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-jpeg-dir=/usr/lib64/ --with-iconv --with-openssl --with-curl --enable-pcntl --with-zlib --enable-bcmath --enable-json --enable-fpm --enable-mbstring --enable-soap --enable-opcache
    ```
+2. yaf/yac/redis/phpunit 稳定版
 
 ## 使用
 
 > 使用镜像 https://hub.docker.com/r/ifintech/php7/
 
-#### 构建新项目
-> 新构建一个名为demo，域名为demo.com的项目
-
-1. 下载phplib，下载phplib-template（构建工具）
-
-> ${dev-path} 为本地开发目录
-```bash
-cd ${dev-path}
-git clone https://github.com/ifintech/phplib.git
-git clone https://github.com/ifintech/phplib-template.git //构建工具
-```
-2. 构建
-
-```shell
-docker run -itd --name demo -p 80:80 -v /${dev-path}/phplib-template:/data1/htdocs/phplib-template -v /${dev-path}/phplib:/data1/htdocs/phplib -v /${dev-path}/demo:/data1/htdocs/demo ifintech/php7
-docker exec -it demo /usr/local/php/bin/php /data1/htdocs/phplib-template/build/cg.php demo demo.com
-```
-
-3. 测试运行
-
-```shell
-curl -v http://127.0.0.1/ -H 'Host:demo.com'
-```
-
-#### 构建已存在项目
-> 当别人有个demo的项目，我需要介入开发，项目为demo，域名为demo.com
-
-1. 下载phplib和项目demo到本地开发目录${dev-path}
-
-```bash
-cd ${dev-path}
-git clone https://github.com/ifintech/phplib.git
-git clone https://github.com/ifintech/demo.git
-```
-
-2. 构建项目，初始化数据库等操作
-
-```shell
-docker run -itd --name mydemo -p 80:80 -v /${dev-path}/phplib:/data1/htdocs/phplib -v /${dev-path}/demo:/data1/htdocs/demo ifintech/phplib
-docker exec -it demo /data1/htdocs/demo/build/build.sh
-```
-
-3. 测试运行
-
-```shell
-curl -v http://127.0.0.1/ -H 'Host:demo.com'
-```
-
-4. 本地开发,在/etc/hosts中添加如下行:
-```shell
-   127.0.0.1	demo.com
-```
-
-5. 通过demo.com:port进行访问（需要注意，如果映射端口不是80，需要修改nginx中的listen配置）
+详细参考：[如何构建php本地开发环境](https://ifentech.gitbooks.io/rdbuild/content/dev/develop/php.html)
 
 ## 模式
 
@@ -120,7 +65,7 @@ curl -v http://127.0.0.1/ -H 'Host:demo.com'
 
 通过phplib-template初始化  
 
-/usr/local/php/bin/php /data1/htdocs/phplib-template/cg.php demo demo.com Admin,Wechat
+php cg.php demo demo.com ~/work/demo admin,wechat
 
 ```bash
 *******************************************************************************************
@@ -128,14 +73,9 @@ Code Generator Version 3.0.0
 *******************************************************************************************
 
 使用说明:
-
-1. 执行当前脚本需要root权限
-
-2. 执行命令示例
-   /usr/bin/php /data1/htdocs/phplib-template/cg.php 项目名称 域名      模块列表(多个模块用英文逗号分割)
-   /usr/bin/php /data1/htdocs/phplib-template/cg.php demo    demo.com admin,wechat
-   
-3. 生成的项目代码目录位置 - /data1/htdocs/{项目名称}
+    执行命令示例:
+   php /data1/htdocs/phplib-template/cg.php 项目名称 域名      项目目标地址  模块列表(多个模块用英文逗号分割)
+   php /data1/htdocs/phplib-template/cg.php demo    demo.com  /home/demo  admin,wechat
 
 *******************************************************************************************
 ```
