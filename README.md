@@ -20,8 +20,6 @@ web框架（如yaf）解决了请求流转和分发的问题，将请求生命�
 
 ## 使用
 
-> 使用镜像 https://hub.docker.com/r/ifintech/php7/
-
 详细参考：[如何构建php本地开发环境](https://ifentech.gitbooks.io/rdbuild/content/dev/develop/php.html)
 
 ## 模式
