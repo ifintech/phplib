@@ -77,7 +77,12 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
      * 注册日志模式
      */
     public function _initBaseLog() {
-        \S\Log\Logger::getInstance()->pushHandler(new \S\Log\Handler\Stdout());
+        if (\Core\Env::isProductEnv()) {
+            \S\Log\Logger::getInstance()->pushHandler(new \S\Log\Handler\Stdout());
+        } else {
+            \S\Log\Logger::getInstance()->pushHandler(new \S\Log\Handler\Stdout());
+        }
+
         return true;
     }
 
