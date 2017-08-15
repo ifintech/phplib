@@ -8,8 +8,7 @@ class Stdout extends Abstraction {
         $message['log_path'] = $log_path;
         $message = json_encode($message, JSON_UNESCAPED_UNICODE);
 
-        //todo php7.1通过tail -f日志文件实现标准输出 预计到php7.3会优化此记录方式
-        file_put_contents("/tmp/php.log", $message."\n", FILE_APPEND | LOCK_EX);
+        file_put_contents("php://stdout", $message."\n");
 
         return true;
     }
