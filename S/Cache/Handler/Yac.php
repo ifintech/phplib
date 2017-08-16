@@ -25,7 +25,7 @@ class Yac extends Abstraction {
      */
     public function get($key) {
         //后台管理不用 local cache
-        if (\Core\Env::getModuleName(true) == 'Admin') {
+        if (0 === strpos(strtolower(\S\Request::server('PATH_INFO')), '/admin')) {
             return null;
         }
 
