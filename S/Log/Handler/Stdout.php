@@ -8,7 +8,11 @@ class Stdout extends Abstraction {
         $message['log_path'] = $log_path;
         $message = json_encode($message, JSON_UNESCAPED_UNICODE);
 
-        file_put_contents("php://stdout", $message."\n");
+        if(\Core\Env::isCli()){
+            file_put_contents("php://stdout", $message."\n");
+        }else{
+            file_put_contents("/tmp/php.log", $message."\n", FILE_APPEND | LOCK_EX);
+        }
 
         return true;
     }
