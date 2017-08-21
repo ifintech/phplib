@@ -98,8 +98,7 @@ class Http {
             $this->_is_private_req = true;
         } else {
             if(\Core\Env::isProductEnv()){
-                #去掉线上出口代理
-//                $config['proxy'] = ($options['proxy'] ?: "http://10.0.2.5:3128");
+                $config['proxy'] = ($options['proxy'] ?: "http://10.1.3.4:3128");
             }
         }
 
